@@ -13,16 +13,16 @@
         <h1>Mi Ejemplo con p5.js</h1>
         <div id="canvas-container"></div>
         
-        <!-- Buttons for color change, brush size, eraser, and share -->
+        <!-- Botones para cambiar color, tamaño de pincel, alternar borrador/pincel y compartir -->
         <div id="controls">
             <button onclick="changeColor('#000000')">Negro</button>
             <button onclick="changeColor('#FF0000')">Rojo</button>
             <button onclick="changeColor('#00FF00')">Verde</button>
             <button onclick="changeColor('#0000FF')">Azul</button>
-            <button onclick="erase()">Borrador</button>
+            <button id="erase-button" onclick="toggleErase()">Borrador</button>
             <button onclick="changeBrushSize(-10)">-</button>
             <button onclick="changeBrushSize(10)">+</button>
-            <button onclick="shareCanvas()">Compartir</button>
+            <button onclick="shareLink()">Compartir</button>
         </div>
     </main>
 </body>

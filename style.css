@@ -39,3 +39,18 @@ button {
 button:hover {
     background-color: #bbb;
 }
+
+#share-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+#share-options a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+#share-options a:hover {
+    color: #0056b3;
+}
