@@ -3,67 +3,89 @@ let brushColor = '#000000';
 let isEraser = false;
 
 function setup() {
+    initializeCanvas();
+}
+
+function draw() {
+    // Detecta interacción táctil o de ratón
+    if (mouseIsPressed || touches.length > 0) {
+        drawBrush(mouseX, mouseY);
+    }
+}
+
+// Inicializa el lienzo
+function initializeCanvas() {
     let canvasSize = Math.min(windowWidth * 0.9, 400);
     let canvas = createCanvas(canvasSize, canvasSize);
     canvas.parent('canvas-container');
     background(220);
 }
 
-function draw() {
-    if (mouseIsPressed || touches.length > 0) {
-        fill(brushColor);
-        noStroke();
-        ellipse(mouseX, mouseY, brushSize, brushSize);
-    }
+// Dibuja el pincel en la posición indicada
+function drawBrush(x, y) {
+    fill(brushColor);
+    noStroke();
+    ellipse(x, y, brushSize, brushSize);
 }
 
+// Ajusta el tamaño del lienzo al cambiar de tamaño la ventana
 function windowResized() {
-    let canvasSize = Math.min(windowWidth * 0.9, 400);
-    resizeCanvas(canvasSize, canvasSize);
-    background(220);
+    initializeCanvas();
 }
 
 // Cambia el color del pincel
 function changeColor(color) {
     brushColor = color;
     isEraser = false;
-    document.getElementById('erase-button').innerText = 'Borrador';
+    document.getElementById('erase-button').classList.remove('active');
 }
 
-// Alternar entre borrador y pincel
+// Alterna entre borrador y pincel
 function toggleErase() {
     isEraser = !isEraser;
     brushColor = isEraser ? '#f0f0f0' : '#000000';
-    document.getElementById('erase-button').innerText = isEraser ? 'Pincel' : 'Borrador';
+    document.getElementById('erase-button').classList.toggle('active', isEraser);
 }
 
-// Ajustar tamaño del pincel
+// Cambia el tamaño del pincel
 function changeBrushSize(amount) {
     brushSize = max(10, brushSize + amount); // Tamaño mínimo es 10
 }
 
-// Compartir enlace de la página
+// Muestra opciones para compartir el enlace
 function shareLink() {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent('¡Mira este ejemplo con p5.js!');
-    const whatsappLink = `https://wa.me/?text=${text}%20${url}`;
-    const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    const twitterLink = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-
-    const options = `
+    const shareOptionsHTML = `
         <div id="share-options">
-            <a href="${whatsappLink}" target="_blank">WhatsApp</a>
-            <a href="${facebookLink}" target="_blank">Facebook</a>
-            <a href="${twitterLink}" target="_blank">Twitter</a>
+            <button onclick="closeShareOptions()">Cerrar</button>
+            <a href="https://wa.me/?text=${text}%20${url}" target="_blank">WhatsApp</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank">Facebook</a>
+            <a href="https://twitter.com/intent/tweet?text=${text}&url=${url}">Twitter</a>
         </div>
     `;
 
-    // Si ya existe el elemento de opciones de compartir, lo elimina
+    // Elimina el menú de compartir existente si está abierto
     const existingOptions = document.getElementById('share-options');
     if (existingOptions) {
         existingOptions.remove();
     }
+    document.getElementById('controls').insertAdjacentHTML('beforeend', shareOptionsHTML);
+}
 
-    // Agrega el nuevo elemento de opciones de compartir
-    document.getElementById('controls').insertAdjacentHTML('beforeend', options);
+// Cierra el menú de opciones para compartir
+function closeShareOptions() {
+    const shareOptions = document.getElementById('share-options');
+    if (shareOptions) shareOptions.remove();
+}
+
+// Maneja la interacción táctil para dibujar
+function touchStarted() {
+    drawBrush(touchX, touchY);
+    return false;
+}
+
+function touchMoved() {
+    drawBrush(touchX, touchY);
+    return false;
 }

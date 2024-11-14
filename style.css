@@ -1,3 +1,4 @@
+/* Configuración general */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -14,16 +15,20 @@ main {
     width: 90%;
 }
 
+/* Contenedor del lienzo */
 #canvas-container {
-    border: 2px solid #ffffff;
+    border: 2px solid #333;
     display: inline-block;
     max-width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
     background-color: #ffffff;
+    border-radius: 8px;
+    padding: 5px;
     touch-action: none; /* Evita desplazamiento accidental en dispositivos táctiles */
 }
 
+/* Controles */
 #controls {
     display: flex;
     flex-wrap: wrap;
@@ -34,6 +39,7 @@ main {
     border-radius: 8px;
 }
 
+/* Botones */
 button {
     padding: 10px 15px;
     font-size: 14px;
@@ -50,17 +56,19 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.95); /* Añade un efecto de clic */
+    transform: scale(0.95);
 }
 
 #erase-button {
     background-color: #d9534f;
 }
 
+/* Botón activo de borrador */
 #erase-button.active {
     background-color: #5bc0de;
 }
 
+/* Opciones de compartir */
 #share-options {
     display: flex;
     flex-direction: column;
@@ -76,4 +84,15 @@ button:active {
 
 #share-options a:hover {
     color: #0056b3;
+}
+
+/* Ajustes en dispositivos móviles */
+@media (max-width: 600px) {
+    button {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    #controls {
+        gap: 5px;
+    }
 }
