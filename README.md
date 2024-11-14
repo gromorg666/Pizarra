@@ -3,7 +3,7 @@
 This is a simple, interactive drawing application built with **p5.js** and designed to be mobile-friendly. It allows users to draw with different colors, adjust the brush size, toggle between a brush and an eraser, and share a link to the app via social media.
 
 ## Demo
-To try out the app, [click here](https://your-live-demo-url.com).
+To try out the app, [click here](https://gromorg666.github.io/Pizarra/).
 
 ## Features
 - **Color Selection**: Choose between black, red, green, and blue.
@@ -14,7 +14,7 @@ To try out the app, [click here](https://your-live-demo-url.com).
 ## Installation
 1. Clone this repository to your local machine:
     ```bash
-    git clone https://github.com/gromorg666/Pizzarra.git
+    git clone https://github.com/gromorg666/Pizarra.git
     ```
 2. Open `index.html` in your browser to use the app locally.
 
